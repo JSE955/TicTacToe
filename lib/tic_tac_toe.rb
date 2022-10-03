@@ -104,5 +104,14 @@ class Game
   end
 end
 
-game = Game.new
-game.play_round(game.p1, game.p2)
+continue = true
+
+while continue
+  game = Game.new
+  game.play_round(game.p1, game.p2)
+  puts 'Would you like to play another round? Y/N'
+  choice = gets.chomp.upcase
+  continue = false if choice == 'N'
+end
+
+puts 'Thanks for playing!'
