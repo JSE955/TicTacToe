@@ -6,9 +6,11 @@ class Board
   end
 
   def display
+    puts
     puts cells[0].inspect
     puts cells[1].inspect
     puts cells[2].inspect
+    puts
   end
 
   def update(cell, symbol)
@@ -60,7 +62,7 @@ class Board
 end
 
 class Player
-  attr_accessor :name, :symbol
+  attr_reader :name, :symbol
 
   def initialize(name, symbol)
     @name = name
@@ -69,7 +71,7 @@ class Player
 
   def take_turn
     puts "#{name}, choose a cell"
-    choice = gets
+    choice = gets.chomp
     choice.to_i
   end
 end
@@ -80,10 +82,10 @@ class Game
 
   def initialize
     puts "Enter name for Player 1 (X):"
-    name = gets
+    name = gets.chomp
     @p1 = Player.new(name, "X")
     puts "Enter name for Player 2 (O):"
-    name = gets
+    name = gets.chomp
     @p2 = Player.new(name, "O")
     @board = Board.new()
     @game_over = false
