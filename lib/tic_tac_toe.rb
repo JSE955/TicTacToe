@@ -1,5 +1,6 @@
 class Board
   attr_accessor :cells
+
   def initialize
     @cells = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
   end
@@ -56,7 +57,6 @@ class Board
       false
     end
   end
-
 end
 
 class Player
@@ -66,10 +66,18 @@ class Player
     @name = name
     @symbol = symbol
   end
-    
+
+  def take_turn
+    puts "#{name}, choose a cell"
+    choice = gets
+    choice.to_i
+  end
 end
 
 class Game
+  attr_accessor :board, :game_over
+  attr_reader :p1, :p2
+
   def initialize
     puts "Enter name for Player 1 (X):"
     name = gets
@@ -78,16 +86,21 @@ class Game
     name = gets
     @p2 = Player.new(name, "O")
     @board = Board.new()
+    @game_over = false
+  end
+
+  def play_round(current_player, next_player)
+    board.display
+    choice = current_player.take_turn
+    board.update(choice, current_player.symbol)
+    self.game_over = board.victory_check
+    if game_over == true
+      puts "#{current_player.name} wins!"
+    else
+      play_round(next_player, current_player)
+    end
   end
 end
 
-mine = Board.new()
-mine.update(1, "X")
-mine.update(5, "X")
-mine.update(9, "X")
-test = mine.victory_check
-puts test
-
-
-
-
+game = Game.new
+game.play_round(game.p1, game.p2)
