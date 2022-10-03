@@ -35,6 +35,28 @@ class Board
     end
   end
 
+  def victory_check
+    if cells[0][0] == cells[0][1] && cells[0][1] == cells[0][2]
+      true
+    elsif cells[1][0] == cells[1][1] && cells[1][1] == cells[1][2]
+      true
+    elsif cells[2][0] == cells[2][1] && cells[2][1] == cells[2][2]
+      true
+    elsif cells[0][0] == cells[1][0] && cells[1][0] == cells[2][0]
+      true
+    elsif cells[0][1] == cells[1][1] && cells[1][1] == cells[1][2]
+      true
+    elsif cells[0][2] == cells[1][2] && cells[1][2] == cells[2][2]
+      true
+    elsif cells[0][0] == cells[1][1] && cells[1][1] == cells[2][2]
+      true
+    elsif cells[0][2] == cells[1][1] && cells[1][1] == cells[2][0]
+      true
+    else
+      false
+    end
+  end
+
 end
 
 class Player
@@ -58,6 +80,13 @@ class Game
     @board = Board.new()
   end
 end
+
+mine = Board.new()
+mine.update(1, "X")
+mine.update(5, "X")
+mine.update(9, "X")
+test = mine.victory_check
+puts test
 
 
 
