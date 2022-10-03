@@ -7,9 +7,9 @@ class Board
 
   def display
     puts
-    puts cells[0].inspect
-    puts cells[1].inspect
-    puts cells[2].inspect
+    puts "|  #{cells[0][0]}  |  #{cells[0][1]}  |  #{cells[0][2]}  |"
+    puts "|  #{cells[1][0]}  |  #{cells[1][1]}  |  #{cells[1][2]}  |"
+    puts "|  #{cells[2][0]}  |  #{cells[2][1]}  |  #{cells[2][2]}  |"
     puts
   end
 
