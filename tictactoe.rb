@@ -20,45 +20,46 @@ class Board
 
   def place_mark(mark, position)
     case position
-    when 1 then self.grid[0][0] = mark
-    when 2 then self.grid[0][1] = mark
-    when 3 then self.grid[0][2] = mark
-    when 4 then self.grid[1][0] = mark
-    when 5 then self.grid[1][1] = mark
-    when 6 then self.grid[1][2] = mark
-    when 7 then self.grid[2][0] = mark
-    when 8 then self.grid[2][1] = mark
-    when 9 then self.grid[2][2] = mark
+    when 1 then grid[0][0] = mark
+    when 2 then grid[0][1] = mark
+    when 3 then grid[0][2] = mark
+    when 4 then grid[1][0] = mark
+    when 5 then grid[1][1] = mark
+    when 6 then grid[1][2] = mark
+    when 7 then grid[2][0] = mark
+    when 8 then grid[2][1] = mark
+    when 9 then grid[2][2] = mark
     end
   end
 
   def check_for_winner(mark)
-    if self.grid[0][0] == mark && self.grid[0][1] == mark && self.grid[0][2] == mark
+    if grid[0][0] == mark && grid[0][1] == mark && grid[0][2] == mark
       return true
-    elsif self.grid[1][0] == mark && self.grid[1][1] == mark && self.grid[1][2] == mark
+    elsif grid[1][0] == mark && grid[1][1] == mark && grid[1][2] == mark
       return true
-    elsif self.grid[2][0] == mark && self.grid[2][1] == mark && self.grid[2][2] == mark
+    elsif grid[2][0] == mark && grid[2][1] == mark && grid[2][2] == mark
       return true
-    elsif self.grid[0][0] == mark && self.grid[1][0] == mark && self.grid[2][0] == mark
+    elsif grid[0][0] == mark && grid[1][0] == mark && grid[2][0] == mark
       return true
-    elsif self.grid[0][1] == mark && self.grid[1][1] == mark && self.grid[2][1] == mark
+    elsif grid[0][1] == mark && grid[1][1] == mark && grid[2][1] == mark
       return true
-    elsif self.grid[0][2] == mark && self.grid[1][2] == mark && self.grid[2][2] == mark
+    elsif grid[0][2] == mark && grid[1][2] == mark && grid[2][2] == mark
       return true
-    elsif self.grid[0][0] == mark && self.grid[1][1] == mark && self.grid[2][2] == mark
+    elsif grid[0][0] == mark && grid[1][1] == mark && grid[2][2] == mark
       return true
-    elsif self.grid[0][2] == mark && self.grid[1][1] == mark && self.grid[2][0] == mark
+    elsif grid[0][2] == mark && grid[1][1] == mark && grid[2][0] == mark
       return true
     end
-    return false
+
+    false
   end
 
   def check_for_tie
     grid.flatten.all? { |mark| mark == 'X' || mark == 'O'}
   end
 
-
   private
+
   attr_reader :grid
 end
 
@@ -72,7 +73,7 @@ class Game
     @current_player = player_one
   end
 
-  def play_round
+  def play
     game_board.print_board
     puts "#{current_player.name} - choose your space"
     position = gets.chomp.to_i
@@ -83,15 +84,13 @@ class Game
       puts "It's a tie!"
     else
       switch_current_player
-      play_round
+      play
     end
   end
 
   def switch_current_player
     self.current_player = current_player == player_one ? player_two : player_one
   end
-
-
 end
 
 puts 'Welcome to Tic-Tac-Toe!'
@@ -103,4 +102,4 @@ player_two_name = gets.chomp
 player_two = Player.new(player_two_name, 'O')
 
 game = Game.new(player_one, player_two)
-game.play_round
+game.play
