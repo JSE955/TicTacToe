@@ -81,10 +81,10 @@ class Game
     game_board.print_board
     puts "#{current_player.name} - choose your space"
     position = gets.chomp.to_i
-    self.game_board.place_mark(current_player.mark, position)
-    if self.game_board.check_for_winner(current_player.mark)
+    game_board.place_mark(current_player.mark, position)
+    if game_board.check_for_winner(current_player.mark)
       puts "#{current_player.name} wins!"
-    elsif self.game_board.check_for_tie
+    elsif game_board.check_for_tie
       puts "It's a tie!"
     else
       switch_current_player
