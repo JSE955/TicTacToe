@@ -14,6 +14,10 @@ class Board
              [7, 8, 9]]
   end
 
+  def print_board
+    p grid
+  end
+
   def place_mark(mark, position)
     case position
     when 1 then self.grid[0][0] = mark
@@ -65,6 +69,26 @@ class Game
     @player_one = player_one
     @player_two = player_two
     @game_board = Board.new
+    @current_player = player_one
+  end
+
+  def play_round
+    game_board.print_board
+    puts "#{current_player.name} - choose your space"
+    position = gets.chomp.to_i
+    self.game_board.place_mark(current_player.mark, position)
+    if self.game_board.check_for_winner(current_player.mark)
+      puts "#{current_player.name} wins!"
+    elsif self.game_board.check_for_tie
+      puts "It's a tie!"
+    else
+      switch_current_player
+      play_round
+    end
+  end
+
+  def switch_current_player
+    self.current_player = current_player == player_one ? player_two : player_one
   end
 
 
@@ -77,3 +101,6 @@ player_one = Player.new(player_one_name, 'X')
 puts 'Player 2 (O) - Enter your name: '
 player_two_name = gets.chomp
 player_two = Player.new(player_two_name, 'O')
+
+game = Game.new(player_one, player_two)
+game.play_round
