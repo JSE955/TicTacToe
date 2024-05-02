@@ -34,23 +34,23 @@ class Board
 
   def check_for_winner(mark)
     if self.grid[0][0] == mark && self.grid[0][1] == mark && self.grid[0][2] == mark
-      true
+      return true
     elsif self.grid[1][0] == mark && self.grid[1][1] == mark && self.grid[1][2] == mark
-      true
+      return true
     elsif self.grid[2][0] == mark && self.grid[2][1] == mark && self.grid[2][2] == mark
-      true
+      return true
     elsif self.grid[0][0] == mark && self.grid[1][0] == mark && self.grid[2][0] == mark
-      true
+      return true
     elsif self.grid[0][1] == mark && self.grid[1][1] == mark && self.grid[2][1] == mark
-      true
+      return true
     elsif self.grid[0][2] == mark && self.grid[1][2] == mark && self.grid[2][2] == mark
-      true
+      return true
     elsif self.grid[0][0] == mark && self.grid[1][1] == mark && self.grid[2][2] == mark
-      true
+      return true
     elsif self.grid[0][2] == mark && self.grid[1][1] == mark && self.grid[2][0] == mark
-      true
+      return true
     end
-    false
+    return false
   end
 
   def check_for_tie
