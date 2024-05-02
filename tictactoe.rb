@@ -27,3 +27,11 @@ class Game
   end
 end
 
+puts 'Welcome to Tic-Tac-Toe!'
+puts 'Player 1 (X) - Enter your name: '
+player_one_name = gets.chomp
+player_one = Player.new(player_one_name, 'X')
+
+puts 'Player 2 (O) - Enter your name: '
+player_two_name = gets.chomp
+player_two = Player.new(player_two_name, 'O')
