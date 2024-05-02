@@ -29,26 +29,30 @@ class Board
   end
 
   def check_for_winner(mark)
-    has_winner = false
     if self.grid[0][0] == mark && self.grid[0][1] == mark && self.grid[0][2] == mark
-      has_winner = true
+      true
     elsif self.grid[1][0] == mark && self.grid[1][1] == mark && self.grid[1][2] == mark
-      has_winner = true
+      true
     elsif self.grid[2][0] == mark && self.grid[2][1] == mark && self.grid[2][2] == mark
-      has_winner = true
+      true
     elsif self.grid[0][0] == mark && self.grid[1][0] == mark && self.grid[2][0] == mark
-      has_winner = true
+      true
     elsif self.grid[0][1] == mark && self.grid[1][1] == mark && self.grid[2][1] == mark
-      has_winner = true
+      true
     elsif self.grid[0][2] == mark && self.grid[1][2] == mark && self.grid[2][2] == mark
-      has_winner = true
+      true
     elsif self.grid[0][0] == mark && self.grid[1][1] == mark && self.grid[2][2] == mark
-      has_winner = true
+      true
     elsif self.grid[0][2] == mark && self.grid[1][1] == mark && self.grid[2][0] == mark
-      has_winner = true
+      true
     end
-    has_winner
+    false
   end
+
+  def check_for_tie
+    grid.flatten.all? { |mark| mark == 'X' || mark == 'O'}
+  end
+
 
   private
   attr_reader :grid
