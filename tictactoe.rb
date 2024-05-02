@@ -15,7 +15,11 @@ class Board
   end
 
   def print_board
-    p grid
+    puts
+    p grid[0]
+    p grid[1]
+    p grid[2]
+    puts
   end
 
   def place_mark(mark, position)
